@@ -7,7 +7,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Lista de Exercícios',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Lista de Exercícios'),
     );
   }
 }
@@ -55,6 +55,9 @@ class _MyHomePageState extends State<MyHomePage> {
       // called again, and so nothing would appear to happen.
       _counter++;
     });
+  }
+  void _createList(){
+    //Abrir outra tela, para inserir dados da lista de exercício
   }
 
   @override
@@ -92,11 +95,12 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'You have pushed the button this many times:',
+              'Lista de exercícios:\n'
+              'Exercício 1: Flexão\n'
+              'Exercício 2: Barra lateral',
             ),
             Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
+              ''
             ),
           ],
         ),
@@ -105,7 +109,7 @@ class _MyHomePageState extends State<MyHomePage> {
         onPressed: _incrementCounter,
         tooltip: 'Increment',
         child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
     );
   }
 }
