@@ -1,1 +1,1 @@
-appListaExercicioss
+appListaExercicios
