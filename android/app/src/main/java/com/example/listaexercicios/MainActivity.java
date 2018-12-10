@@ -1,4 +1,4 @@
-package com.example.listaexercicios;
+package com.mobile.lista;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;
