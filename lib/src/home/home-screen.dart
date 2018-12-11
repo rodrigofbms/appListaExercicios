@@ -1,6 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:lista_exercicios/src/Exercicio/exercicio-screen.dart';
+import 'package:lista_exercicios/src/add/add-screen.dart';
 
-class HomeScreen extends StatelessWidget {
+List listasExercicios = new List();
+HomeScreenState homeState = new HomeScreenState();
+class HomeScreen extends StatefulWidget {
+  @override
+  HomeScreenState createState() {
+    return homeState;
+  }
+}
+
+class HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    listasExercicios = [
+      botaoExercicio("Lista de exercicios 1", context, 0),
+      botaoExercicio("Lista de exercicios 2", context, 1),
+    ];
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -9,32 +29,38 @@ class HomeScreen extends StatelessWidget {
         title: new Text("Lista de exercícios"),
         centerTitle: true,
       ),
-      body: new Column(
-        children: <Widget>[
-          botaoExercicio("Lista de exercicios 1",context,context),
-          botaoExercicio("Lista de exercicios 2",context,context),
-        ],
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      body: ListView.builder(
+        itemCount: listasExercicios.length,
+        itemBuilder: (BuildContext context, int index) {
+          return listasExercicios[index];
+        },
       ),
       floatingActionButton: new FloatingActionButton(
         child: new Icon(Icons.add),
         onPressed: () {
-          //TODO: tela add
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (BuildContext context) {
+            return new AddScreen();
+          }));
         },
       ),
     );
   }
 
-  Widget botaoExercicio(String nome,context,tela) {
+  dynamic botaoExercicio(String nome, context, pos) {
     return MaterialButton(
-      padding: new EdgeInsets.all(0.0),
-      onPressed: (){
-        Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) {
-          return tela;
+      highlightColor: Colors.transparent,
+      splashColor: Colors.transparent,
+      padding: new EdgeInsets.only(top: 15),
+      onPressed: () {
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (BuildContext context) {
+          return new ExercicioScreenState(pos, nome);
         }));
       },
-          child: new Container(
-        width: 200,
+      child: new Container(
+        width: double.infinity,
+        margin: new EdgeInsets.only(left: 15, right: 15),
         height: 70,
         child: new Text(nome),
         alignment: Alignment.center,
