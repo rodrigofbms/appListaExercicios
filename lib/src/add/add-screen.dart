@@ -58,15 +58,11 @@ class _AddScreenState extends State<AddScreen> {
                     padding: new EdgeInsets.all(0.0),
                     onPressed: () {
                       homeState.setState(() {
-                        if(_nomeController == null||_subtituloController == null){
                         listasExercicios.add(homeState.botaoExercicio(
                             _nomeController.text,
                             homeState.context,
                             listasExercicios.length));
                             Navigator.of(context).pop();
-                      }else{
-                        Navigator.of(context).pop();
-                      }
                       });
                       
                     },

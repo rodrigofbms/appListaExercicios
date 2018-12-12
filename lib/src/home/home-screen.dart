@@ -44,6 +44,13 @@ class HomeScreenState extends State<HomeScreen> {
           }));
         },
       ),
+      bottomNavigationBar: MaterialButton(
+        onPressed: () {
+          Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
+              return new ExercicioScreen();
+          }));
+        },
+      ),
     );
   }
 
@@ -55,7 +62,7 @@ class HomeScreenState extends State<HomeScreen> {
       onPressed: () {
         Navigator.of(context)
             .push(MaterialPageRoute(builder: (BuildContext context) {
-          return new ExercicioScreenState(pos, nome);
+          return new ExercicioScreen();
         }));
       },
       child: new Container(

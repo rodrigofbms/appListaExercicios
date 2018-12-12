@@ -1,58 +1,64 @@
 import 'package:flutter/material.dart';
-import 'package:lista_exercicios/src/Exercicio/umExercicio-screen.dart';
 
-List exercicios = new List();
-ExercicioScreenState ExercicioState = new ExercicioScreenState();
 class ExercicioScreen extends StatefulWidget {
-  final posicao1;
-  final nome1;
-  const ExercicioScreen(this.posicao1, this.nome1);
-
-  @override
-  ExercicioScreenState createState() {
-    return ExercicioState;
-  }
+  _ExercicioScreenState createState() => _ExercicioScreenState();
 }
 
-  class ExercicioScreenState extends State<ExercicioScreen> {
-    
-  void initState() {
-    exercicios = [
-      Exercicio("Abdominal", context, 0),
-      Exercicio("Cadeira Flexora", context, 1),
-    ];
-  }
-  
+class _ExercicioScreenState extends State<ExercicioScreen> {
+bool checkBoxState1 = false;
+bool checkBoxState2 = false;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
+    return new Scaffold(
+      appBar: new AppBar(
+        title: new Text("Exercícios"),
+        centerTitle: true,
       ),
-    body: Center(
-     child: SingleChildScrollView(
-       padding: EdgeInsets.all(10.0),
-        child: Column(
-        children: <Widget>[
-          
-        ],
+      body: new Center(
+        child: new Column(
+          children: <Widget>[
+            new Card(
+              child: new Row(
+                mainAxisSize: MainAxisSize.max,
+                children: <Widget>[
+                  new Text("Abdominal de 20 repetições"),
+                  new Checkbox(
+                    value: checkBoxState1,
+                    onChanged: (bool e) => changeState1(),
+                  ),
+                ],
+              ),
+            ),
+            new Card(
+              child: new Row(
+                mainAxisSize: MainAxisSize.max,
+                children: <Widget>[
+                  new Text("Elevação frontal com halteres de 10 repetições"),
+                  new Checkbox(
+                    value: checkBoxState2,
+                    onChanged: (bool e) => changeState2(),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
-     ),
-    ),
     );
   }
 
-  Widget Exercicio(String nome, context, pos) {
-    return MaterialButton(
-      highlightColor: Colors.transparent,
-      splashColor: Colors.transparent,
-      padding: new EdgeInsets.only(top: 15),
-      onPressed: () {
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (BuildContext context) {
-          return new UmExercicioScreen(pos, nome);
-        }));
-      },
-    );
-  }
+  void changeState1(){
+setState(() {
+  checkBoxState1 = !checkBoxState1;
+});
 }
+ void changeState2(){
+setState(() {
+  checkBoxState2 = !checkBoxState2;
+});
+}
+}
+
+
+
