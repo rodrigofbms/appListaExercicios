@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:lista_exercicios/src/Exercicio/exercicio-screen.dart';
 import 'package:lista_exercicios/src/add/add-screen.dart';
+//**** IMPORTANTE ****
+//TODO consertar a passagem de telas
+// por que quando retorna para a tela incial não consegue voltar para tela da lista selecionada
+//**** IMPORTANTE ****
 
 List listasExercicios = new List();
 HomeScreenState homeState = new HomeScreenState();

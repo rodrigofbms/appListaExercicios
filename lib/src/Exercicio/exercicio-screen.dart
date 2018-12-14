@@ -1,12 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:lista_exercicios/src/add/add-exercicio-screen.dart';
 
+List fazerExercicios = new List();
+_ExercicioScreenState exercicioScreenState = new _ExercicioScreenState();
 class ExercicioScreen extends StatefulWidget {
-  _ExercicioScreenState createState() => _ExercicioScreenState();
+  @override
+  _ExercicioScreenState createState(){
+  return exercicioScreenState;
+  } 
+
+
 }
 
 class _ExercicioScreenState extends State<ExercicioScreen> {
-bool checkBoxState1 = false;
-bool checkBoxState2 = false;
+  
+  @override
+  void initState() { 
+    fazerExercicios = [
+      createCheckBoxList("Abdominal", context, 0),
+      createCheckBoxList("Stiff", context, 1),
+    ];
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,50 +30,31 @@ bool checkBoxState2 = false;
         title: new Text("Exercícios"),
         centerTitle: true,
       ),
-      body: new Center(
-        child: new Column(
-          children: <Widget>[
-            new Card(
-              child: new Row(
-                mainAxisSize: MainAxisSize.max,
-                children: <Widget>[
-                  new Text("Abdominal de 20 repetições"),
-                  new Checkbox(
-                    value: checkBoxState1,
-                    onChanged: (bool e) => changeState1(),
-                  ),
-                ],
-              ),
-            ),
-            new Card(
-              child: new Row(
-                mainAxisSize: MainAxisSize.max,
-                children: <Widget>[
-                  new Text("Elevação frontal com halteres de 10 repetições"),
-                  new Checkbox(
-                    value: checkBoxState2,
-                    onChanged: (bool e) => changeState2(),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
+      body: ListView.builder(
+          itemCount: fazerExercicios.length,
+          itemBuilder: (BuildContext context, int index) {
+            return fazerExercicios[index];
+          }),
+          floatingActionButton: new FloatingActionButton(
+            child: new Icon(Icons.add),
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
+                  return new AddExercicio();
+              }));
+            },
+          ),
     );
   }
 
-  void changeState1(){
-setState(() {
-  checkBoxState1 = !checkBoxState1;
-});
+  Widget createCheckBoxList(String texto, context, pos) {
+    return new Card(
+      margin: EdgeInsets.all(10.0),
+      child:Container(
+        child: ListTile(
+          title: new Text(texto, style: TextStyle(fontWeight: FontWeight.w500)),
+        ),
+      ),
+      
+    );
+  }
 }
- void changeState2(){
-setState(() {
-  checkBoxState2 = !checkBoxState2;
-});
-}
-}
-
-
-

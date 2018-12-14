@@ -47,7 +47,7 @@ class _AddScreenState extends State<AddScreen> {
                       Navigator.of(context).pop();
                     },
                     child: new CircleAvatar(
-                      backgroundColor: Colors.red,
+                      backgroundColor: Colors.redAccent,
                       child: new Icon(
                         Icons.close,
                         color: Colors.white,
